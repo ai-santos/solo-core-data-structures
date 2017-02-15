@@ -44,12 +44,15 @@ describe('hash table as an associative array', function() {
     })
   })
 
-  context('remove()', () => {
+  context.only('remove()', () => {
     it('removes a key-value pair when passed a key', () => {
-      ht.put('aileen', 'is super cool')
-      ht.put('aileen2', 'is awesome')
+      let testingHash = ht.hashFunction('fppqvt')
+      let testingDiff = ht.hashFunction('aileen3')
+      console.log(testingHash, testingDiff)
+      ht.put('aadqer', 'is super cool')
+      ht.put('fppqvt', 'is awesome')
       ht.put('aileen3', 'is the bomb dot com')
-      ht.remove('aileen2')
+      ht.remove('fppqvt')
 
       expect(ht.size()).to.eql(2)
     })

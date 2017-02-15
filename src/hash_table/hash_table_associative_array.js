@@ -14,8 +14,16 @@ class LinkedList {
 
   addNode(key, value){
     const node = new Node(key, value)
-    node.next = this.head
-    this.head = node
+    if(this.head) {
+      let temp
+      node.next = this.head
+      temp = this.head
+      this.head = node
+      console.log(temp)
+      temp.prev = this.head
+    } else {
+      this.head = node
+    }
   }
 
   findNode(key) {
@@ -113,11 +121,16 @@ class HashTable {
     let node = bucket.findNode(key)
     if(node) {
       if(node.key === key) {
-
+        console.log(node)
+        console.log(node.prev.next)
+        node.prev.next = node.next
+        this._length--
+      } else {
+          throw new Error('This key does not exist')
       }
-      return false
+    } else {
+        throw new Error('This key does not exist')
     }
-    return false
   }
 
 }
