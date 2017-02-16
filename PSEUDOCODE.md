@@ -6,7 +6,7 @@ Hash Table as a Set:
 //create a method called contains that will check if an input is in the hash table and return a boolean
 //create a hash function algorithm that will turn a value into a string and then to a character array, then reduce that array into a number value using modulo
 
-Hash Table as an associative array with linked lists to prevent clustering
+Hash Table as an Associative Array (with linked lists to prevent clustering)
 
 //create a class for node and linked list to instatiate and use its methods in a hash table
     //create a class Node 
@@ -38,19 +38,12 @@ Hash Table as an associative array with linked lists to prevent clustering
 
 Hash Table as an Object:
 
+//create a hash table class
+//create a constructor that instantiates a set when it is called by the new keyword, give it a specific size
+//create a method called add that will take an input, hash that function, and add that input to the hash table in the specific index
+//create a method called contains that will check if an input is in the hash table and return a boolean
+//create a hash function algorithm that will turn a value into a string and then to a character array, then reduce that array into a number value using modulo
+
+Binary Search Tree:
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-//create a hash table class 
