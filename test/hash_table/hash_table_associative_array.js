@@ -44,7 +44,7 @@ describe('hash table as an associative array', function() {
     })
   })
 
-  context.only('remove()', () => {
+  context('remove()', () => {
     it('removes a key-value pair when passed a key', () => {
       let testingHash = ht.hashFunction('fppqvt')
       let testingDiff = ht.hashFunction('aileen3')
@@ -55,6 +55,13 @@ describe('hash table as an associative array', function() {
       ht.remove('fppqvt')
 
       expect(ht.size()).to.eql(2)
+    })
+  })
+
+  context('iterate()', () => {
+    it('takes a callback function and passes it a key and value in sequence', () => {
+
+      expect()
     })
   })
 

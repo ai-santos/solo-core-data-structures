@@ -107,9 +107,9 @@ class HashTable {
     return false
   }
 
-  // iterate(key, val) {
+  iterate(callback) {
 
-  // }
+  }
 
   size() {
     return this._length
