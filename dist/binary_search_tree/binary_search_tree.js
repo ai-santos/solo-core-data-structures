@@ -16,6 +16,7 @@ var BinarySearchTree = function () {
   function BinarySearchTree() {
     _classCallCheck(this, BinarySearchTree);
 
+    this._length = 0;
     this._root = null;
   }
 
@@ -67,11 +68,25 @@ var BinarySearchTree = function () {
           }
         }
       }
+      this._length++;
     }
+  }, {
+    key: 'search',
+    value: function search(data) {
+      var found = false;
+      var currentNode = this._root;
 
-    // search() {
-
-    // }
+      while (!found && currentNode) {
+        if (data < currentNode.data) {
+          currentNode = currentNode.left;
+        } else if (data > currentNode.data) {
+          currentNode = currentNode.right;
+        } else {
+          found = true;
+        }
+      }
+      return currentNode;
+    }
 
     // remove() {
 
@@ -119,11 +134,11 @@ var BinarySearchTree = function () {
         this.postOrder(this._root, myFunc);
       }
     }
-
-    // count() {
-
-    // }
-
+  }, {
+    key: 'count',
+    value: function count() {
+      return this._length;
+    }
   }]);
 
   return BinarySearchTree;
@@ -133,9 +148,11 @@ var bst = new BinarySearchTree();
 bst.insert(13);
 bst.insert(14);
 bst.insert(15);
-bst.traverse('inOrder', function (val) {
-  console.log(val);
-});
+console.log(bst.search(14));
+// console.log(bst.count())
+// bst.traverse('inOrder', (val) => {
+//   console.log(val)
+// })
 // console.log(bst.contains(13))
 // console.log(bst._root.data)
 

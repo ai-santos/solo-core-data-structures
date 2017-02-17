@@ -8,6 +8,7 @@ class Node {
 
 class BinarySearchTree {
   constructor() {
+    this._length = 0;
     this._root = null
   }
 
@@ -56,11 +57,24 @@ class BinarySearchTree {
           }
       }
     }
+    this._length++
   }
 
-  // search() {
+  search(data) {
+    let found = false
+    let currentNode = this._root
 
-  // }
+    while(!found && currentNode) {
+      if(data < currentNode.data) {
+        currentNode = currentNode.left
+      } else if (data > currentNode.data) {
+        currentNode = currentNode.right
+      } else {
+        found = true
+      }
+    }
+    return currentNode
+  }
 
   // remove() {
 
@@ -104,9 +118,9 @@ class BinarySearchTree {
     }
   }
 
-  // count() {
-
-  // }
+  count() {
+    return this._length
+  }
 
 }
 
@@ -114,9 +128,11 @@ const bst = new BinarySearchTree()
 bst.insert(13)
 bst.insert(14)
 bst.insert(15)
-bst.traverse('inOrder', (val) => {
-  console.log(val)
-})
+console.log(bst.search(14))
+// console.log(bst.count())
+// bst.traverse('inOrder', (val) => {
+//   console.log(val)
+// })
 // console.log(bst.contains(13))
 // console.log(bst._root.data)
 

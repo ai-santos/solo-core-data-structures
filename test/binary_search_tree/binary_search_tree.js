@@ -5,7 +5,7 @@ import BinarySearchTree from '../../src/binary_search_tree/binary_search_tree'
 chai.use(chaiChange)
   let bst
 
-describe.only('Binary Search Tree', function() {
+describe('Binary Search Tree', function() {
   beforeEach(function() {
     bst = new BinarySearchTree()
   })
@@ -15,7 +15,7 @@ describe.only('Binary Search Tree', function() {
   })
 
   context('insert()', () => {
-    it('inserts a node with the specified value into the tree', () => {
+    it('inserts a node with the specified value into the bst', () => {
       bst.insert(13)
       bst.insert(14)
       bst.insert(15)
@@ -29,14 +29,42 @@ describe.only('Binary Search Tree', function() {
       expect(bst._root.data).to.eql(13)
     })
 
-    it('traverses the tree in the defined order', () => {
+    it('traverses the bst in the defined order', () => {
       bst.insert(13)
       bst.insert(14)
       bst.insert(15)
       bst.insert(16)
+      let result = bst.traverse('inOrder', (val) => { console.log(val)})
 
-      expect(bst.traverse('inOrder', (val) => { console.log(val)})).to.eql(13,14,15,16)
+      expect(result).to.eql(13,14,15,16)
     })
+
+    context('count()', () => {
+      it('returns the number of nodes in the bst', () => {
+        bst.insert(13)
+        bst.insert(14)
+        bst.insert(15)
+        bst.insert(16)
+
+        expect(bst.count()).to.eql(4)
+      })
+    })
+
+    // context('search()', () => {
+    //   it('returns a node object if there are nodes in the bst', () => {
+    //     bst.insert(13)
+    //     bst.insert(14)
+    //     bst.insert(15)
+    //     bst.insert(16)
+
+    //     expect(bst.search(13)).to.eql()
+    //   })
+
+    //   it('returns null if there is no root node in the bst', () => {
+
+    //     expect(bst.search(13)).to.eql(null)
+    //   })
+    // })
   })
 
 })
