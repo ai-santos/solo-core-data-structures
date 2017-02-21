@@ -135,8 +135,4 @@ class HashTable {
 
 }
 
-// let ht = new HashTable()
-// ht.put('aileen', 'super cool')
-// console.log('size:: ', ht.size())
-
 export { LinkedList, HashTable }

@@ -166,9 +166,5 @@ var HashTable = function () {
   return HashTable;
 }();
 
-// let ht = new HashTable()
-// ht.put('aileen', 'super cool')
-// console.log('size:: ', ht.size())
-
 exports.LinkedList = LinkedList;
 exports.HashTable = HashTable;
