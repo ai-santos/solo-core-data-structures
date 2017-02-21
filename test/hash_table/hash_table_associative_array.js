@@ -58,4 +58,11 @@ describe('hash table as an associative array', function() {
     })
   })
 
+  context('iterate()', () => {
+    it('takes a callback function and passes it a key and value in sequence', () => {
+
+      expect()
+    })
+  })
+
 })

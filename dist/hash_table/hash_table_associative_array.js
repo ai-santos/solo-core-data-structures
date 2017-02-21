@@ -132,11 +132,9 @@ var HashTable = function () {
       }
       return false;
     }
-
-    // iterate(key, val) {
-
-    // }
-
+  }, {
+    key: 'iterate',
+    value: function iterate(callback) {}
   }, {
     key: 'size',
     value: function size() {
