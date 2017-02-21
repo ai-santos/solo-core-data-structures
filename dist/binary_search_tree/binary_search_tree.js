@@ -1,5 +1,9 @@
 'use strict';
 
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
 var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -73,6 +77,9 @@ var BinarySearchTree = function () {
   }, {
     key: 'search',
     value: function search(data) {
+      if (this._root === null) {
+        return null;
+      }
       var found = false;
       var currentNode = this._root;
 
@@ -87,11 +94,89 @@ var BinarySearchTree = function () {
       }
       return currentNode;
     }
+  }, {
+    key: 'remove',
+    value: function remove(data) {
+      var found = false;
+      var parentNode = null;
+      var currentNode = this._root;
+      var countChildren = void 0;
+      var replacement = void 0;
+      var replacementParentNode = void 0;
 
-    // remove() {
+      while (!found && currentNode) {
+        if (data < currentNode.data) {
+          parentNode = currentNode;
+          currentNode = currentNode.left;
+        } else if (data > currentNode.data) {
+          parentNode = currentNode;
+          currentNode = currentNode.right;
+        } else {
+          found = true;
+        }
+      }
 
-    // }
+      if (found) {
+        countChildren = (currentNode.left !== null ? 1 : 0) + (currentNode.right !== null ? 1 : 0);
+      }if (currentNode === this._root) {
+        switch (countChildren) {
+          case 0:
+            this._root = null;
+            break;
+          case 1:
+            this._root = currentNode.right === null ? currentNode.left : currentNode.right;
+            break;
+          case 2:
+            replacement = this._root.left;
+            while (replacement.right !== null) {
+              replacementParentNode = replacement;
+              replacement = replacement.right;
+            }
+            if (replacementParentNode !== null) {
+              replacementParentNode.right = replacement.left;
+              replacement.right = this._root.right;
+              replacement.left = this._root.left;
+            } else {
+              replacement.right = this._root.right;
+            }
+            this._root = replacement;
+        }
+      } else {
+        switch (countChildren) {
+          case 0:
+            if (currentNode.data < parentNode.data) {
+              parentNode.left = null;
+            } else {
+              parentNode.right = null;
+            }
+            break;
+          case 1:
+            if (currentNode.data < parentNode) {
+              parentNode.left = currentNode.left === null ? currentNode.right : currentNode.left;
+            } else {
+              parentNode.right = currentNode.right === null ? currentNode.left : currentNode.right;
+            }
+            break;
+          case 2:
+            replacement = currentNode.left;
+            replacementParentNode = currentNode;
 
+            while (replacement.right !== null) {
+              replacementParentNode = replacement;
+              replacement = replacement.right;
+            }
+            replacement.right = replacement.left;
+            replacement.right = currentNode.right;
+            replacement.left = currentNode.left;
+
+            if (currentNode.data < parentNode.data) {
+              parentNode.left = replacement;
+            } else {
+              parentNode.right = replacement;
+            }
+        }
+      }
+    }
   }, {
     key: 'inOrder',
     value: function inOrder(node, myFunc) {
@@ -144,18 +229,4 @@ var BinarySearchTree = function () {
   return BinarySearchTree;
 }();
 
-var bst = new BinarySearchTree();
-bst.insert(13);
-bst.insert(14);
-bst.insert(15);
-console.log(bst.search(14));
-// console.log(bst.count())
-// bst.traverse('inOrder', (val) => {
-//   console.log(val)
-// })
-// console.log(bst.contains(13))
-// console.log(bst._root.data)
-
-// console.log(JSON.stringify(bst, null, 4))
-
-// export default BinarySearchTree
+exports.default = BinarySearchTree;

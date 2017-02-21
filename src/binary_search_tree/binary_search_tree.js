@@ -61,6 +61,9 @@ class BinarySearchTree {
   }
 
   search(data) {
+    if(this._root === null) {
+      return null
+    }
     let found = false
     let currentNode = this._root
 
@@ -76,9 +79,90 @@ class BinarySearchTree {
     return currentNode
   }
 
-  // remove() {
+  remove(data) {
+    let found = false
+    let parentNode = null
+    let currentNode = this._root
+    let countChildren
+    let replacement
+    let replacementParentNode
 
-  // }
+
+    while(!found && currentNode) {
+      if(data < currentNode.data) {
+        parentNode = currentNode
+        currentNode = currentNode.left
+      } else if(data > currentNode.data) {
+        parentNode = currentNode
+        currentNode = currentNode.right
+      } else {
+        found = true
+      }
+    }
+
+    if (found) {
+      countChildren = (currentNode.left !== null ? 1 : 0) +
+                      (currentNode.right !== null ? 1 : 0)
+    } if (currentNode === this._root) {
+        switch(countChildren) {
+          case 0:
+            this._root = null
+            break
+          case 1:
+            this._root = (currentNode.right === null ? currentNode.left : currentNode.right)
+            break
+          case 2:
+            replacement = this._root.left
+            while (replacement.right !== null) {
+              replacementParentNode = replacement
+              replacement = replacement.right
+            }
+            if (replacementParentNode !== null) {
+              replacementParentNode.right = replacement.left
+              replacement.right = this._root.right
+              replacement.left = this._root.left
+            } else {
+                replacement.right = this._root.right
+            }
+            this._root = replacement
+        }
+  } else {
+      switch(countChildren) {
+        case 0:
+          if(currentNode.data < parentNode.data) {
+            parentNode.left = null
+          } else {
+            parentNode.right = null
+          }
+          break;
+        case 1:
+          if(currentNode.data < parentNode) {
+            parentNode.left = (currentNode.left === null ? currentNode.right : currentNode.left)
+          } else {
+            parentNode.right = (currentNode.right === null ? currentNode.left : currentNode.right)
+          }
+          break;
+        case 2:
+          replacement = currentNode.left
+          replacementParentNode = currentNode
+
+          while (replacement.right !== null) {
+            replacementParentNode = replacement
+            replacement = replacement.right
+          }
+          replacement.right = replacement.left
+          replacement.right = currentNode.right
+          replacement.left = currentNode.left
+
+          if (currentNode.data < parentNode.data) {
+            parentNode.left = replacement
+          } else {
+              parentNode.right = replacement
+          }
+      }
+    }
+  }
+
 
   inOrder(node, myFunc) {
     if (node !== null) {
@@ -124,18 +208,4 @@ class BinarySearchTree {
 
 }
 
-const bst = new BinarySearchTree()
-bst.insert(13)
-bst.insert(14)
-bst.insert(15)
-console.log(bst.search(14))
-// console.log(bst.count())
-// bst.traverse('inOrder', (val) => {
-//   console.log(val)
-// })
-// console.log(bst.contains(13))
-// console.log(bst._root.data)
-
-// console.log(JSON.stringify(bst, null, 4))
-
-// export default BinarySearchTree
+export default BinarySearchTree

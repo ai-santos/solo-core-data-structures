@@ -50,21 +50,22 @@ describe('Binary Search Tree', function() {
       })
     })
 
-    // context('search()', () => {
-    //   it('returns a node object if there are nodes in the bst', () => {
-    //     bst.insert(13)
-    //     bst.insert(14)
-    //     bst.insert(15)
-    //     bst.insert(16)
+    context('search()', () => {
+      it('returns a node object if there are nodes in the bst', () => {
+        bst.insert(13)
+        bst.insert(14)
+        bst.insert(15)
+        bst.insert(16)
+        bst.search(13)
 
-    //     expect(bst.search(13)).to.eql()
-    //   })
+        expect(bst.search(13).data).to.eql(13)
+      })
 
-    //   it('returns null if there is no root node in the bst', () => {
+      it('returns null if there is no root node in the bst', () => {
 
-    //     expect(bst.search(13)).to.eql(null)
-    //   })
-    // })
+        expect(bst.search(13)).to.eql(null)
+      })
+    })
   })
 
 })
