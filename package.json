@@ -1,0 +1,28 @@
+{
+  "name": "solo-core-data-structures",
+  "version": "1.0.0",
+  "description": "data structures",
+  "main": "index.js",
+  "directories": {
+    "test": "test"
+  },
+  "scripts": {
+    "build": "babel --copy-files src --out-dir dist",
+    "build:watch": "npm run build -- --watch",
+    "test": "mocha --compilers js:babel-register --recursive"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/asantos3026/solo-core-data-structures.git"
+  },
+  "author": "Aileen Santos",
+  "license": "ISC",
+  "devDependencies": {
+    "babel-cli": "^6.18.0",
+    "babel-core": "^6.21.0",
+    "babel-preset-es2015": "^6.18.0",
+    "chai": "^3.5.0",
+    "chai-change": "^2.1.2",
+    "mocha": "^3.2.0"
+  }
+}
